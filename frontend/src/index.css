@@ -9,3 +9,102 @@
 *{
     font-family: "Outfit", sans-serif;
 }
+
+/* Custom Colors */
+:root {
+  --color-error-red: #ef4444;
+  --color-success-green: #10b981;
+  --color-sky-blue: #3b82f6;
+  --color-deep-navy: #1e293b;
+  --color-neutral-charcoal: #374151;
+  --color-cloud-gray: #e5e7eb;
+  --color-ivory-white: #fefefe;
+}
+
+.text-error-red {
+  color: var(--color-error-red);
+}
+
+.text-success-green {
+  color: var(--color-success-green);
+}
+
+.text-sky-blue {
+  color: var(--color-sky-blue);
+}
+
+.text-deep-navy {
+  color: var(--color-deep-navy);
+}
+
+.text-neutral-charcoal {
+  color: var(--color-neutral-charcoal);
+}
+
+.text-cloud-gray {
+  color: var(--color-cloud-gray);
+}
+
+.text-ivory-white {
+  color: var(--color-ivory-white);
+}
+
+.bg-error-red {
+  background-color: var(--color-error-red);
+}
+
+.bg-success-green {
+  background-color: var(--color-success-green);
+}
+
+.bg-sky-blue {
+  background-color: var(--color-sky-blue);
+}
+
+.bg-deep-navy {
+  background-color: var(--color-deep-navy);
+}
+
+.bg-neutral-charcoal {
+  background-color: var(--color-neutral-charcoal);
+}
+
+.bg-cloud-gray {
+  background-color: var(--color-cloud-gray);
+}
+
+.bg-ivory-white {
+  background-color: var(--color-ivory-white);
+}
+
+.border-cloud-gray {
+  border-color: var(--color-cloud-gray);
+}
+
+/* Cursor Pointer for Interactive Elements */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Cursor pointer for clickable icons */
+svg {
+  cursor: pointer;
+}
+
+/* Cursor pointer for any clickable element */
+[role="button"],
+.clickable,
+.interactive {
+  cursor: pointer;
+}
+
+/* Ensure form inputs don't have pointer cursor */
+input,
+textarea,
+select {
+  cursor: auto;
+}

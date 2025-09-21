@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Form from './components/Form';
 import ContactList from './components/ContactList';
 import Pagination from './components/Pagination';
 
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://contact-book-app-backend-gczp.onrender.com';
 
 const App = () => {
   const [contacts, setContacts] = useState([]);
@@ -56,13 +58,14 @@ const App = () => {
       setTotal((prev) => prev + 1);
       setFormErrors({});
       setShowForm(false);
+      toast.success(`Contact "${contact.name}" added successfully!`);
       return true;
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.error) {
-        setFormErrors({ apiError: error.response.data.error });
-      } else {
-        setFormErrors({ apiError: 'Error adding contact' });
-      }
+      const errorMessage = error.response && error.response.data && error.response.data.error
+        ? error.response.data.error
+        : 'Error adding contact';
+      setFormErrors({ apiError: errorMessage });
+      toast.error(errorMessage);
       return false;
     }
   };
@@ -81,13 +84,14 @@ const App = () => {
       setFormErrors({});
       setShowForm(false);
       setEditContact(null);
+      toast.success(`Contact "${contact.name}" updated successfully!`);
       return true;
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.error) {
-        setFormErrors({ apiError: error.response.data.error });
-      } else {
-        setFormErrors({ apiError: 'Error updating contact' });
-      }
+      const errorMessage = error.response && error.response.data && error.response.data.error
+        ? error.response.data.error
+        : 'Error updating contact';
+      setFormErrors({ apiError: errorMessage });
+      toast.error(errorMessage);
       return false;
     }
   };
@@ -97,8 +101,13 @@ const App = () => {
       await axios.delete(`/contacts/${id}`);
       setContacts((prev) => prev.filter((c) => c.id !== id));
       setTotal((prev) => prev - 1);
+      toast.success('Contact deleted successfully!');
     } catch (error) {
+      const errorMessage = error.response && error.response.data && error.response.data.error
+        ? error.response.data.error
+        : 'Error deleting contact';
       console.error('Error deleting contact:', error);
+      toast.error(errorMessage);
     }
   };
 
@@ -124,6 +133,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-100 to-indigo-100 flex flex-col w-full">
+      <ToastContainer />
       <header className="bg-white shadow-md py-6 w-full">
         <h1 className="text-4xl font-extrabold text-center text-indigo-900 tracking-wide w-full">Contact Book</h1>
       </header>
