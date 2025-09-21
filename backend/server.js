@@ -142,23 +142,6 @@ app.put('/contacts/:id', async (req, res) => {
   }
 });
 
-// GET / - Root API endpoint
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Contact Book API is running!',
-    version: '1.0.0',
-    endpoints: {
-      'GET /': 'API status and information',
-      'GET /contacts': 'Get all contacts with pagination (query params: page, limit)',
-      'POST /contacts': 'Add a new contact (body: name, email, phone)',
-      'PUT /contacts/:id': 'Update a contact by ID',
-      'DELETE /contacts/:id': 'Delete a contact by ID'
-    },
-    status: 'active',
-    timestamp: new Date().toISOString()
-  });
-});
-
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
